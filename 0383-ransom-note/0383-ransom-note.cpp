@@ -8,7 +8,7 @@ public:
         int c=0;
         for(int i=0;i<ransomNote.length();i++){
             if(map.find(ransomNote[i])!=map.end()){
-                if(map[ransomNote[i]]==0) continue;
+                if(map[ransomNote[i]]==0) return false;
                 c++;
                 map[ransomNote[i]]--;
             }
