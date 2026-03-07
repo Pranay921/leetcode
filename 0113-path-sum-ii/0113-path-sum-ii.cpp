@@ -11,25 +11,23 @@
  */
 class Solution {
 public:
-    void inOrder(TreeNode* root,int sum,int target,vector<int> ans,vector<vector<int>> &path){
-        if(root==nullptr) return;
-        sum+=root->val;
+    int compute(int s,TreeNode* root,int target,vector<int>ans,vector<vector<int>> &result ){
+        if(root==nullptr) return 0;
+        s+=root->val;
         ans.push_back(root->val);
-        if(root->left==nullptr && root->right==nullptr){
-             if(sum==target){
-                path.push_back(ans);
-             }
-            //  ans.pop_back();
-             return;
+        if(root->left==nullptr && root->right==nullptr && s==target){
+            result.push_back(ans);
+            ans.pop_back();
         }
-        if(root->left) inOrder(root->left,sum,target,ans,path);
-        if(root->right) inOrder(root->right,sum,target,ans,path);
-        ans.pop_back();
+        compute(s,root->left,target,ans,result);
+        compute(s,root->right,target,ans,result);
+        return s;
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         vector<int> ans;
-        vector<vector<int>> path;
-        inOrder(root,0,targetSum,ans,path);
-        return path;
+        int s=0;
+        vector<vector<int>>result;
+        compute(s,root,targetSum,ans,result);
+        return result;
     }
 };
