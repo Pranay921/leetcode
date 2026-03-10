@@ -31,8 +31,8 @@ public:
     }
     bool isValidBST(TreeNode* root) {
         if(root==nullptr) return true;
-        if(root->left!=nullptr && root->val<leftMax(root->left)) return false;
-        if(root->right!=nullptr && root->val>rightMin(root->right)) return false;
-        return true;
+        if(root->left!=nullptr && root->val<=leftMax(root->left)) return false;
+        if(root->right!=nullptr && root->val>=rightMin(root->right)) return false;
+        return isValidBST(root->left) && isValidBST(root->right);
     }
 };
