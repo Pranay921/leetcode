@@ -17,7 +17,7 @@ public:
         ans.push_back(root->val);
         if(root->left==nullptr && root->right==nullptr && s==target){
             result.push_back(ans);
-            // ans.pop_back();
+            ans.pop_back();
         }
         compute(s,root->left,target,ans,result);
         compute(s,root->right,target,ans,result);
