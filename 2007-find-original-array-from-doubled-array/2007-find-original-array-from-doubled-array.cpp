@@ -1,31 +1,24 @@
 class Solution {
 public:
     vector<int> findOriginalArray(vector<int>& changed) {
-        int n = changed.size();
-        if (n % 2 != 0) return {};
+        if(changed.size() % 2 != 0) return {};
         sort(changed.begin(),changed.end());
-        vector<int> left;
-        vector<int> right;
-
-        for (int i = 0; i < n/2; i++)
-            left.push_back(changed[i]);
-
-        for (int i = n/2; i < n; i++)
-            right.push_back(changed[i]);
-
-        int leftCount = 0, rightCount = 0;
-
-        for (int i = 0; i < n/2; i++) {
-            if (find(right.begin(), right.end(), left[i] * 2) != right.end())
-                leftCount++;
-
-            if (find(left.begin(), left.end(), right[i] * 2) != left.end())
-                rightCount++;
+        unordered_map<int,int> mp;
+        for(int i=0;i<changed.size();i++){
+            mp[changed[i]]++;
         }
-
-        if (leftCount == left.size()) return left;
-        if (rightCount == right.size()) return right;
-
-        return {};
+        bool check=false;
+        vector<int> result;
+        for(int i=0;i<changed.size();i++){
+            int sq=changed[i]*2;
+            if(mp[changed[i]]==0) continue;//we lets say 1,2,3,4,6,8 for 1 2 is its square and afterwards we decrement bot of them so in map 1 and 2 both becomes 0 so when i comes to 2 we dont need to find the square of 2 because 2 has already been assigned as a sqare value of 1 so that's why skip the element 
+            if(!mp.count(sq) || mp.count(sq)==0){
+                return {};
+            }
+            result.push_back(changed[i]);
+            mp[sq]--;
+            mp[changed[i]]--;
+        }
+        return result;
     }
 };
