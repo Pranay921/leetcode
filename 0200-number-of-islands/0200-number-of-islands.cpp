@@ -16,9 +16,7 @@ public:
                     if(abs(deltarow)+abs(deltacol) != 1) continue;
                     int nRow=r+deltarow;
                     int nCol=c+deltacol;
-                    if(nRow>=0 && nRow<n && nCol>=0 && nCol<m &&
-                    grid[nRow][nCol]=='1' && !visited[nRow][nCol]){
-
+                    if(nRow>=0 && nRow<n && nCol>=0 && nCol<m && grid[nRow][nCol]=='1' && !visited[nRow][nCol]){
                         visited[nRow][nCol]=1;
                         q.push({nRow,nCol});
                     }
