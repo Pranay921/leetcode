@@ -10,16 +10,15 @@ public:
             int r=q.front().first;
             int c =q.front().second;
             q.pop();
-            for(int deltarow=-1;deltarow<=1;deltarow++){
-                for(int deltacol=-1;deltacol<=1;deltacol++){
-                    if(deltarow==0 && deltacol==0) continue;
-                    if(abs(deltarow)+abs(deltacol) != 1) continue;
-                    int nRow=r+deltarow;
-                    int nCol=c+deltacol;
-                    if(nRow>=0 && nRow<n && nCol>=0 && nCol<m && grid[nRow][nCol]=='1' && !visited[nRow][nCol]){
-                        visited[nRow][nCol]=1;
-                        q.push({nRow,nCol});
-                    }
+            vector<int> delRow = {-1, 0, 1, 0};
+            vector<int> delCol = {0, 1, 0, -1};
+            for(int k = 0; k < 4; k++){
+                int nRow = r + delRow[k];
+                int nCol = c + delCol[k];
+                if(nRow>=0 && nRow<n && nCol>=0 && nCol<m &&
+                grid[nRow][nCol]=='1' && !visited[nRow][nCol]){
+                    visited[nRow][nCol] = 1;
+                    q.push({nRow,nCol});
                 }
             }
         }
