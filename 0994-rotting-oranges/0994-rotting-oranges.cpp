@@ -25,7 +25,7 @@ public:
                 int newR=r+rr[i];
                 int newC=c+cc[i];
                 if(newR>=0 && newR<grid.size() && newC>=0 && newC<grid[0].size() && !visited[newR][newC] && grid[newR][newC]==1){
-                    // grid[newR][newC]=2;
+                    grid[newR][newC]=2;
                     visited[newR][newC]=true;
                     q.push({{newR,newC},count+1});
                 }
