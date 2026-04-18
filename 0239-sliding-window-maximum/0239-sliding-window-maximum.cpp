@@ -32,7 +32,7 @@ public:
         result.push_back(*s.rbegin());
         for(int i=k;i<nums.size();i++)
         {
-            s.erase(nums[i-k]);
+            s.erase(s.find(nums[i-k]));
             s.insert(nums[i]);
             result.push_back(*s.rbegin());
         }
